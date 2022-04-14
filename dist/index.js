@@ -2128,12 +2128,12 @@ function addBinToPath() {
             if (!fs_1.default.existsSync(gp)) {
                 // some of the hosted images have go install but not profile dir
                 core.debug(`creating ${gp}`);
-                yield io.mkdirP(gp);
+                io.mkdirP(gp);
             }
             let bp = path_1.default.join(gp, 'bin');
             if (!fs_1.default.existsSync(bp)) {
                 core.debug(`creating ${bp}`);
-                yield io.mkdirP(bp);
+                io.mkdirP(bp);
             }
             core.addPath(bp);
             added = true;

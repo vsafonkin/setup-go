@@ -75,13 +75,13 @@ export async function addBinToPath(): Promise<boolean> {
     if (!fs.existsSync(gp)) {
       // some of the hosted images have go install but not profile dir
       core.debug(`creating ${gp}`);
-      await io.mkdirP(gp);
+      io.mkdirP(gp);
     }
 
     let bp = path.join(gp, 'bin');
     if (!fs.existsSync(bp)) {
       core.debug(`creating ${bp}`);
-      await io.mkdirP(bp);
+      io.mkdirP(bp);
     }
 
     core.addPath(bp);
