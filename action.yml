@@ -14,5 +14,5 @@ outputs:
   go-version:
     description: 'The installed Go version. Useful when given a version range as input.'
 runs:
-  using: 'node16'
+  using: 'node12'
   main: 'dist/index.js'
