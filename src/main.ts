@@ -69,7 +69,8 @@ export async function addBinToPath(): Promise<boolean> {
   }
 
   let buf = cp.execSync('go env GOPATH');
-  if (Buffer.byteLength(buf)) {
+  console.log("BUFFER:", buf)
+  if (buf) {
     let gp = buf.toString().trim();
     core.debug(`go env GOPATH :${gp}:`);
     if (!fs.existsSync(gp)) {
