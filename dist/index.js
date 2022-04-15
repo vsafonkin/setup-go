@@ -2122,18 +2122,18 @@ function addBinToPath() {
             return added;
         }
         let buf = child_process_1.default.execSync('go env GOPATH');
-        if (buf) {
+        if (!buf.byteLength) {
             let gp = buf.toString().trim();
             core.debug(`go env GOPATH :${gp}:`);
             if (!fs_1.default.existsSync(gp)) {
                 // some of the hosted images have go install but not profile dir
                 core.debug(`creating ${gp}`);
-                io.mkdirP(gp);
+                yield io.mkdirP(gp);
             }
             let bp = path_1.default.join(gp, 'bin');
             if (!fs_1.default.existsSync(bp)) {
                 core.debug(`creating ${bp}`);
-                io.mkdirP(bp);
+                yield io.mkdirP(bp);
             }
             core.addPath(bp);
             added = true;

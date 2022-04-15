@@ -69,19 +69,19 @@ export async function addBinToPath(): Promise<boolean> {
   }
 
   let buf = cp.execSync('go env GOPATH');
-  if (buf) {
+  if (!buf.byteLength) {
     let gp = buf.toString().trim();
     core.debug(`go env GOPATH :${gp}:`);
     if (!fs.existsSync(gp)) {
       // some of the hosted images have go install but not profile dir
       core.debug(`creating ${gp}`);
-      io.mkdirP(gp);
+      await io.mkdirP(gp);
     }
 
     let bp = path.join(gp, 'bin');
     if (!fs.existsSync(bp)) {
       core.debug(`creating ${bp}`);
-      io.mkdirP(bp);
+      await io.mkdirP(bp);
     }
 
     core.addPath(bp);
